@@ -118,11 +118,11 @@ def main():
 
     if found_endpoints:
         with open(args.output, "w") as f:
+            line_count = 0
             for endpoint in found_endpoints:
                 f.write(endpoint + "\n")
+                line_count += 1
         print(f"Found endpoints saved to {args.output}")
-        with open((args.output, 'r', encoding='utf-8') as file:
-         line_count = sum(1 for line in file)
         print(f"Count Found: {line_count}")
     else:
         print("No endpoints found.")
