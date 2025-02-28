@@ -25,7 +25,7 @@ print(BANNER)
 # Regular expressions for JS files and hidden endpoints
 ENDPOINT_REGEX = re.compile(r'["\'](\/[^"\']+)["\']')
 JS_REGEX = re.compile(r'src=["\'](.*?\.js)["\']')
-unwanted_chars = ['*', '#', '<', '>', '//']
+unwanted_chars = ['*', '#', '<', '>', '//', ':']
 
 # Store unique endpoints and crawled JS files
 found_endpoints = set()
@@ -121,6 +121,9 @@ def main():
             for endpoint in found_endpoints:
                 f.write(endpoint + "\n")
         print(f"Found endpoints saved to {args.output}")
+        with open((args.output, 'r', encoding='utf-8') as file:
+         line_count = sum(1 for line in file)
+        print(f"Count Found: {line_count}")
     else:
         print("No endpoints found.")
 
